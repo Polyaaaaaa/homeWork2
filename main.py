@@ -1,3 +1,5 @@
+
+
 class Product:
     name: str
     description: str
@@ -27,13 +29,13 @@ class Category:
         Category.product_count += len(products)
 
 
-if __name__ == "__main__":
-    product1 = Product("Laptop", "High-end laptop", 1000, 5)
-    product2 = Product("Smartphone", "Latest model", 500, 10)
-
-    category1 = Category("Electronics", "Electronic devices",
-                         [product1, product2])
-    category2 = Category("Furniture", "Home furniture", [])
-
-    print(f"categories amount: {Category.category_count}")
-    print(f"products in categories: {Category.product_count}")
+# if __name__ == "__main__":
+#     product1 = Product("Laptop", "High-end laptop", 1000, 5)
+#     product2 = Product("Smartphone", "Latest model", 500, 10)
+#
+#     category1 = Category("Electronics", "Electronic devices",
+#                          [product1, product2])
+#     category2 = Category("Furniture", "Home furniture", [])
+#
+#     print(f"categories amount: {Category.category_count}")
+#     print(f"products in categories: {Category.product_count}")
