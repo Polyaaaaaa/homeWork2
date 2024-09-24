@@ -12,10 +12,10 @@ class Product:
 
     @classmethod
     def new_product(cls, dictionary):
-        name = dictionary.get('name')
-        description = dictionary.get('description')
-        price = dictionary.get('price')
-        quantity = dictionary.get('quantity')
+        name = dictionary.get("name")
+        description = dictionary.get("description")
+        price = dictionary.get("price")
+        quantity = dictionary.get("quantity")
 
         return cls(name, description, price, quantity)
 
@@ -56,31 +56,40 @@ class Category:
     def get_products(self):
         products = []
         for product in self.__products:
-            products.append(f'{product.name}, {product.get_price} руб. Остаток: {product.quantity}')
+            products.append(
+                f"{product.name}, {product.get_price} руб. Остаток: {product.quantity}"
+            )
 
         return products
 
 
 if __name__ == "__main__":
-    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000, 5)
+    product1 = Product(
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000, 5
+    )
     product2 = Product("Iphone 15", "512GB, Gray space", 210000, 8)
     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000, 14)
 
     category1 = Category(
         "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-        [product1, product2, product3]
+        [product1, product2, product3],
     )
 
     print(category1.get_products)
-    product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000, 7)
+    product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000, 7)
     category1.add_product(product4)
     print(category1.get_products)
     print(Category.product_count)
 
     new_product = Product.new_product(
-        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000,
-         "quantity": 5})
+        {
+            "name": "Samsung Galaxy S23 Ultra",
+            "description": "256GB, Серый цвет, 200MP камера",
+            "price": 180000,
+            "quantity": 5,
+        }
+    )
     print(new_product.name)
     print(new_product.description)
     print(new_product.get_price)
