@@ -21,12 +21,12 @@ class Product:
 
     # Геттер для цены
     @property
-    def get_price(self):
+    def price(self):
         return self.__price
 
     # Сеттер для цены с проверкой
-    @get_price.setter
-    def get_price(self, price):
+    @price.setter
+    def price(self, price):
         if price <= 0:
             raise ValueError("Цена не должна быть нулевая или отрицательная")
         else:
@@ -53,11 +53,11 @@ class Category:
         Category.product_count += 1
 
     @property
-    def get_products(self):
+    def products(self):
         products = []
         for product in self.__products:
             products.append(
-                f"{product.name}, {product.get_price} руб. Остаток: {product.quantity}"
+                f"{product.name}, {product.price} руб. Остаток: {product.quantity}"
             )
 
         return products
@@ -76,10 +76,10 @@ if __name__ == "__main__":
         [product1, product2, product3],
     )
 
-    print(category1.get_products)
+    print(category1.products)
     product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000, 7)
     category1.add_product(product4)
-    print(category1.get_products)
+    print(category1.products)
     print(Category.product_count)
 
     new_product = Product.new_product(
@@ -92,18 +92,18 @@ if __name__ == "__main__":
     )
     print(new_product.name)
     print(new_product.description)
-    print(new_product.get_price)
+    print(new_product.price)
     print(new_product.quantity)
 
     new_product.set_price = 800
-    print(new_product.get_price)
+    print(new_product.price)
 
     result = new_product.set_price = -100
     if result:
         print(result)
-    print(new_product.get_price)
+    print(new_product.price)
 
     result = new_product.set_price = 0
     if result:
         print(result)
-    print(new_product.get_price)
+    print(new_product.price)

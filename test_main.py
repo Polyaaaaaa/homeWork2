@@ -11,7 +11,7 @@ def product():
 def test_product_init(product):
     assert product.name == "Laptop"
     assert product.description == "High-end laptop"
-    assert product.get_price == 1000
+    assert product.price == 1000
     assert product.quantity == 5
 
 
@@ -25,7 +25,7 @@ def category():
 def test_category_init(category):
     assert category.name == "Electronics"
     assert category.description == "Electronic device"
-    assert len(category.get_products) == 2
+    assert len(category.products) == 2
     assert Category.category_count == 1
     assert Category.product_count == 2
 
@@ -39,7 +39,7 @@ def test_get_products():
     category = Category("Category1", "Description1", products)
 
     # Получаем список продуктов
-    products_list = category.get_products
+    products_list = category.products
 
     # Проверяем, что список продуктов содержит ожидаемые элементы
     assert len(products_list) == 2
@@ -57,7 +57,7 @@ def test_add_product():
     category.add_product(new_product)
 
     # Получаем список продуктов
-    products_list = category.get_products
+    products_list = category.products
 
     # Проверяем, что продукт добавлен в список
     assert len(products_list) == 2
@@ -69,21 +69,21 @@ def test_set_price():
     product = Product("Product1", "Description1", 100, 5)
 
     # Устанавливаем новую цену
-    product.get_price = 150
-    assert product.get_price == 150
+    product.price = 150
+    assert product.price == 150
 
     # Проверяем, что нельзя установить нулевую или отрицательную цену
     with pytest.raises(
         ValueError, match="Цена не должна быть нулевая или отрицательная"
     ):
-        product.get_price = 0
-    assert product.get_price == 150
+        product.price = 0
+    assert product.price == 150
 
     with pytest.raises(
         ValueError, match="Цена не должна быть нулевая или отрицательная"
     ):
-        product.get_price = -100
-    assert product.get_price == 150
+        product.price = -100
+    assert product.price == 150
 
 
 def test_get_price():
@@ -91,7 +91,7 @@ def test_get_price():
     product = Product("Product1", "Description1", 100, 5)
 
     # Проверяем, что get_price возвращает правильную цену
-    assert product.get_price == 100
+    assert product.price == 100
 
 
 def test_new_product():
@@ -109,5 +109,5 @@ def test_new_product():
     # Проверяем, что продукт создан правильно
     assert product.name == "Product1"
     assert product.description == "Description1"
-    assert product.get_price == 100
+    assert product.price == 100
     assert product.quantity == 5
