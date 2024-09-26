@@ -37,7 +37,7 @@ class Product:
 
     def __add__(self, other):
         total_sum = self.__price * self.quantity  + other.__price * other.quantity
-        return f" final summ - {total_sum}"
+        return total_sum
 
 
 class Category:
