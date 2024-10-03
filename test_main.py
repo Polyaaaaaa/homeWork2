@@ -111,3 +111,26 @@ def test_new_product():
     assert product.description == "Description1"
     assert product.price == 100
     assert product.quantity == 5
+
+
+def test__str__product():
+    product = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000, 5)
+    assert str(product) == "Samsung Galaxy S23 Ultra, 180000 руб. Остаток: 5"
+
+
+def test__str__category():
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    category = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        [product1, product2, product3]
+    )
+    assert str(category) == "Смартфоны, количество продуктов: 9 шт "
+
+
+def test__add__product():
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000, 8)
+    assert product1 + product2 == 2580000
