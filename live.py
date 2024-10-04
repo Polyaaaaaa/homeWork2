@@ -8,12 +8,11 @@ class ToDoList:
     def __str__(self) -> str:
         return "\n".join(self.tasks)
 
-    def __add__(self, other: 'ToDoList') -> 'ToDoList':
+    def __add__(self, other: "ToDoList") -> "ToDoList":
         return ToDoList(self.tasks + other.tasks)
 
 
-
-tasks = ['task1', 'task2']
+tasks = ["task1", "task2"]
 
 list1 = ToDoList(tasks)
 
@@ -22,9 +21,8 @@ print(repr(list1))
 
 print(list1)
 
-list2 = ToDoList(['task3', 'task4'])
+list2 = ToDoList(["task3", "task4"])
 
 list3 = list1 + list2
 
 print(list3)
-
