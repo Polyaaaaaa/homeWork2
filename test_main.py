@@ -1,6 +1,6 @@
 import pytest
 
-from main import Category, Product
+from main import Category, Product, Smartphone, LawnGrass
 
 
 @pytest.fixture
@@ -63,6 +63,26 @@ def test_add_product():
     assert len(products_list) == 2
     assert products_list[1] == "Product2, 200 руб. Остаток: 10"
 
+    smartphone1 = Smartphone("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000, 5, 95.5,
+                             "S23 Ultra", 256, "Серый")
+    smartphone2 = Smartphone("Iphone 15", "512GB, Gray space", 210000, 8, 98.2, "15", 512, "Gray space")
+    smartphone3 = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000, 14, 90.3, "Note 11", 1024, "Синий")
+
+    # Создаем категорию для смартфонов
+    category_smartphones = Category("Смартфоны", "Высокотехнологичные смартфоны", [smartphone1, smartphone2])
+
+    # Добавляем новый смартфон в категорию
+    category_smartphones.add_product(smartphone3)
+
+    # Получаем список продуктов в категории смартфонов
+    smartphones_list = category_smartphones.products
+
+    # Проверяем, что смартфон добавлен в список
+    assert len(smartphones_list) == 3
+    assert smartphones_list[2] == "Xiaomi Redmi Note 11, 31000 руб. Остаток: 14"
+
+    assert Category.product_count == 9
+
 
 def test_set_price():
     # Создаем экземпляр класса Product
@@ -119,18 +139,39 @@ def test__str__product():
 
 
 def test__str__category():
-    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
-    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000, 14)
     category = Category(
         "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
         [product1, product2, product3]
     )
-    assert str(category) == "Смартфоны, количество продуктов: 9 шт "
+    assert str(category) == "Смартфоны, количество продуктов: 12 шт "
 
 
 def test__add__product():
     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000, 5)
     product2 = Product("Iphone 15", "512GB, Gray space", 210000, 8)
     assert product1 + product2 == 2580000
+
+    smartphone1 = Smartphone("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000, 5, 95.5,
+                             "S23 Ultra", 256, "Серый")
+    smartphone2 = Smartphone("Iphone 15", "512GB, Gray space", 210000, 8, 98.2, "15", 512, "Gray space")
+    smartphone3 = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000, 14, 90.3, "Note 11", 1024, "Синий")
+    assert smartphone1 + smartphone2 == 2580000
+    assert smartphone2 + smartphone3 == 2114000
+
+    grass1 = LawnGrass("Газонная трава", "Элитная трава для газона", 500, 20, "Россия", "7 дней", "Зеленый")
+    grass2 = LawnGrass("Газонная трава 2", "Выносливая трава", 450, 15, "США", "5 дней", "Темно-зеленый")
+    assert grass1 + grass2
+
+    assert smartphone1 + grass1 == TypeError
+
+
+def test_smartphone():
+    pass
+
+
+def test_lawngrass():
+    pass
