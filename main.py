@@ -11,7 +11,7 @@ class BaseProduct(ABC):
         pass
 
 
-class MixinLog:
+class InitialisationMixin:
     def __init__(self):
         self.quantity = self.quantity
         self.price = self.price
