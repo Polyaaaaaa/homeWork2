@@ -234,4 +234,5 @@ def test__add__product():
 def test_initialisation_mixin(capsys):
     Product("Product1", "Description1", 100, 5)
     message = capsys.readouterr()
-    assert message.out.strip() == ''
+    assert message.out.strip() == "Product('Product1', 'Description1', 100, 5)"
+
