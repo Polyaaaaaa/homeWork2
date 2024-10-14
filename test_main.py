@@ -231,9 +231,8 @@ def test__add__product():
     assert smartphone1 + grass1 == TypeError
 
 
-def test_smartphone():
-    pass
+def test_initialisation_mixin(capsys):
+    Product("Product1", "Description1", 100, 5)
+    message = capsys.readouterr()
+    assert message.out.strip() == "Product('Product1', 'Description1', 100, 5)"
 
-
-def test_lawngrass():
-    pass
