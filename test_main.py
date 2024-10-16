@@ -236,3 +236,13 @@ def test_initialisation_mixin(capsys):
     message = capsys.readouterr()
     assert message.out.strip() == "Product('Product1', 'Description1', 100, 5)"
 
+
+# def test_middle_price():
+#     with pytest.raises(ValueError):
+#         Category("fhjf", "jkkdd", [])
+
+
+def test_product_init():
+    # product = Product("bdjd", "jdfhjd", 123, 0)
+    with pytest.raises(ValueError):
+        Product("fhjf", "jkkdd", 123, 0)
